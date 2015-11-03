@@ -1,0 +1,71 @@
+sh /etc/init.d/rc.mc_defaults
+
+#
+# Mavlink (PX4FMU: ttyS0 - Pixhawk & PX4IO: ttyS1)
+#
+
+#mavlink start -d /dev/ttyS1 -b 115200
+#usleep 1000
+
+
+#
+# Stop my dear commander :)
+#
+commander stop
+echo "commander"
+
+#
+# Stop MC controllers (los has empezado al configurar por defecto como un MC)
+#
+mc_att_control stop
+mc_pos_control stop
+echo "MCs out"
+usleep 1000
+
+#
+# Stop land detector
+#
+land_detector stop
+echo "Land out"
+#
+# INAV stimator
+#
+position_estimator_inav stop
+echo "INAV out"
+
+#
+# Start stimators: Ya tienes el estimator en q 
+#
+ekf_att_pos_estimator start
+echo "EKF start"
+usleep 1000
+
+#
+# PWMs config: mirar las hojas de configuracion de PWMs!
+#
+pwm rate -r 50 -a
+# Motores
+pwm failsafe -c 12 -p 900 
+pwm min -c 12 -p 900 
+pwm max -c 12 -p 1900
+pwm disarmed -c 12 -p 900
+
+# Servos
+pwm failsafe -c 345678 -p 1500 
+pwm min -c 345678 -p 1100 
+pwm max -c 34568 -p 1900 
+pwm disarmed -c 34568 -p 0
+
+pwm disarmed -c 7 -p 1590 # Indicacion de desarmado
+
+echo "pwm"
+
+#
+# Simulink
+#
+
+dbx_control start
+usleep 2000
+echo "simulink"
+
+#exit

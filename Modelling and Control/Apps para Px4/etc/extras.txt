@@ -1,0 +1,105 @@
+sh /etc/init.d/rc.mc_defaults
+
+#
+# Mavlink (PX4FMU: ttyS0 - Pixhawk & PX4IO: ttyS1)
+#
+
+#mavlink start -d /dev/ttyS1 -b 115200
+#usleep 1000
+
+
+#
+# Stop my dear commander :)
+#
+commander stop
+echo "commander"
+
+#
+# Stop MC controllers (los has empezado al configurar por defecto como un MC)
+#
+mc_att_control stop
+mc_pos_control stop
+echo "MCs out"
+usleep 1000
+
+#
+# Stop land detector
+#
+land_detector stop
+echo "Land out"
+#
+# INAV stimator
+#
+position_estimator_inav stop
+echo "INAV out"
+
+#
+# Start stimators: Ya tienes el estimator en q 
+#
+ekf_att_pos_estimator start
+echo "EKF start"
+usleep 1000
+
+#
+# PWMs config para VTOL: mirar las hojas de configuracion de PWMs!
+##pwm rate -r 50 -a
+# Motores
+##pwm failsafe -c 123 -p 1100 
+##pwm min -c 123 -p 1100 
+##pwm max -c 123 -p 1900
+##pwm disarmed -c 123 -p 1100
+# Servos
+##pwm failsafe -c 45678 -p 1500 
+##pwm min -c 45678 -p 900 
+##pwm max -c 45678 -p 2100 
+##pwm disarmed -c 45678 -p 1500
+##pwm disarmed -c 7 -p 1350 # Indicacion de desarmado
+##echo "pwm VTOL"
+
+
+#
+# PWMs config para FW: mirar las hojas de configuracion de PWMs!
+pwm rate -r 50 -a
+# Motores
+pwm failsafe -c 12 -p 1100 
+pwm min -c 12 -p 1100 
+pwm max -c 12 -p 1900
+pwm disarmed -c 12 -p 1100
+
+# Servos
+pwm failsafe -c 3 -p 1970 
+pwm disarmed -c 3 -p 1970
+pwm failsafe -c 4 -p 1898 
+pwm disarmed -c 4 -p 1898
+
+pwm failsafe -c 5678 -p 1500 
+pwm min -c 345678 -p 900 
+pwm max -c 345678 -p 2100 
+pwm disarmed -c 5678 -p 1500
+
+pwm disarmed -c 7 -p 1350 # Indicacion de desarmado
+echo "pwm FW"
+
+
+#
+# Simulink
+#
+
+dbx_control start
+usleep 2000
+echo "simulink"
+
+#
+# resacalado de baterias con Atto-pilot
+#
+param set BAT_V_SCALING 0.012672
+
+#
+# FW PID cascade controler for DBX
+#
+
+sh /fs/microsd/etc/dbx_control_fw_params.txt
+#sh /fs/microsd/etc/dbx_control_vtol_params.txt
+
+
+#exit

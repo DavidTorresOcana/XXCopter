@@ -1,0 +1,25 @@
+#
+# FW PID cascade controler for DBX
+#
+
+param set DBX_Kp_h 0.1
+param set DBX_Ki_h 0.05
+param set DBX_Kd_h 0.05
+
+param set DBX_Kp_u 0.1
+param set DBX_Ki_u 0.03
+
+param set DBX_Kp_theta 3.0
+param set DBX_Ki_theta 0.1
+
+param set DBX_Kp_phi 10.0
+param set DBX_Ki_phi 0.5
+
+param set DBX_Kp_q 0.07
+param set DBX_Ki_q 0.01
+
+param set DBX_Kp_p 0.01
+param set DBX_Ki_p 0.0
+
+echo "PIDS"
+#exit
