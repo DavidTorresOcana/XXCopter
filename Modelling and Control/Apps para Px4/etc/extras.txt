@@ -4,8 +4,12 @@ sh /etc/init.d/rc.mc_defaults
 # Mavlink (PX4FMU: ttyS0 - Pixhawk & PX4IO: ttyS1)
 #
 
-#mavlink start -d /dev/ttyS1 -b 115200
-#usleep 1000
+#
+# RPI Serial interface
+#
+
+mavlink start -d /dev/ttyS6 -b 115200
+usleep 1000
 
 
 #
