@@ -10,7 +10,8 @@ sh /etc/init.d/rc.mc_defaults
 
 mavlink start -d /dev/ttyS6 -b 115200
 usleep 1000
-
+mavlink start -d /dev/ttyS2 -b 115200
+usleep 1000
 
 #
 # Stop my dear commander :)
