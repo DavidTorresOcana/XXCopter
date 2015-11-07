@@ -106,5 +106,11 @@ param set BAT_V_SCALING 0.012672
 sh /fs/microsd/etc/dbx_control_fw_params.txt
 #sh /fs/microsd/etc/dbx_control_vtol_params.txt
 
+#
+# Start Loging!
+#
+
+sdlog2 on -r 10 -t
+
 
 #exit
