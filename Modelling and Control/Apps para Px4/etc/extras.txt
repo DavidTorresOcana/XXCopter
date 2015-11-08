@@ -47,43 +47,44 @@ usleep 1000
 
 #
 # PWMs config para VTOL: mirar las hojas de configuracion de PWMs!
-##pwm rate -r 50 -a
+pwm rate -r 50 -a
 # Motores
-##pwm failsafe -c 123 -p 1100 
-##pwm min -c 123 -p 1100 
-##pwm max -c 123 -p 1900
-##pwm disarmed -c 123 -p 1100
+pwm failsafe -c 123 -p 1100 
+pwm min -c 123 -p 1100 
+pwm max -c 123 -p 1900
+pwm disarmed -c 123 -p 1100
 # Servos
-##pwm failsafe -c 45678 -p 1500 
-##pwm min -c 45678 -p 900 
-##pwm max -c 45678 -p 2100 
-##pwm disarmed -c 45678 -p 1500
-##pwm disarmed -c 7 -p 1350 # Indicacion de desarmado
-##echo "pwm VTOL"
+pwm failsafe -c 45678 -p 1500 
+pwm min -c 45678 -p 900 
+pwm max -c 45678 -p 2100 
+pwm disarmed -c 45678 -p 1500
+pwm disarmed -c 7 -p 1350 # Indicacion de desarmado
+echo "pwm VTOL"
 
 
 #
 # PWMs config para FW: mirar las hojas de configuracion de PWMs!
-pwm rate -r 50 -a
+#
+##pwm rate -r 50 -a
 # Motores
-pwm failsafe -c 12 -p 1100 
-pwm min -c 12 -p 1100 
-pwm max -c 12 -p 1900
-pwm disarmed -c 12 -p 1100
+##pwm failsafe -c 12 -p 1100 
+##pwm min -c 12 -p 1100 
+##pwm max -c 12 -p 1900
+##pwm disarmed -c 12 -p 1100
 
 # Servos
-pwm failsafe -c 3 -p 1970 
-pwm disarmed -c 3 -p 1970
-pwm failsafe -c 4 -p 1898 
-pwm disarmed -c 4 -p 1898
+##pwm failsafe -c 3 -p 1970 
+##pwm disarmed -c 3 -p 1970
+##pwm failsafe -c 4 -p 1898 
+##pwm disarmed -c 4 -p 1898
 
-pwm failsafe -c 5678 -p 1500 
-pwm min -c 345678 -p 900 
-pwm max -c 345678 -p 2100 
-pwm disarmed -c 5678 -p 1500
+##pwm failsafe -c 5678 -p 1500 
+##pwm min -c 345678 -p 900 
+##pwm max -c 345678 -p 2100 
+##pwm disarmed -c 5678 -p 1500
 
-pwm disarmed -c 7 -p 1350 # Indicacion de desarmado
-echo "pwm FW"
+##pwm disarmed -c 7 -p 1350 # Indicacion de desarmado
+##echo "pwm FW"
 
 
 #
