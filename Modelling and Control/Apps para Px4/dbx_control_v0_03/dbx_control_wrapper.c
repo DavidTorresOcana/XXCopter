@@ -58,7 +58,7 @@ int i = 1;
 struct {
     float Throtle_sens;
     float Yaw_sens;
-    float Roll_pich_sens;
+    float Atti_sens;
     float phi_tau;
     float phi_K_b;
     float phi_f_i;
@@ -74,7 +74,7 @@ struct {
     float q_K_b;
     float r_tau;
     float r_K_b;
-    float Flaps_ang_deg;
+    float Flaps_deg;
     }		GCS_parameters;
     
 int simulink_main(int argc, char *argv[])
@@ -110,7 +110,7 @@ int simulink_main(int argc, char *argv[])
   struct {
     param_t Throtle_sens;
     param_t Yaw_sens;
-    param_t Roll_pich_sens;
+    param_t Atti_sens;
     
     param_t phi_tau;
     param_t phi_K_b;
@@ -133,13 +133,13 @@ int simulink_main(int argc, char *argv[])
     param_t r_tau;
     param_t r_K_b;
     
-    param_t Flaps_ang_deg;
+    param_t Flaps_deg;
   }	GCS_comms_pointers;
   
   // Get the pointers to GCS params
   GCS_comms_pointers.Throtle_sens = param_find("DBX_Throtle_sens");
   GCS_comms_pointers.Yaw_sens = param_find("DBX_Yaw_sens");
-  GCS_comms_pointers.Roll_pich_sens = param_find("DBX_Roll_pich_sens");
+  GCS_comms_pointers.Atti_sens = param_find("DBX_Atti_sens");
   
   GCS_comms_pointers.phi_tau = param_find("DBX_phi_tau");
   GCS_comms_pointers.phi_K_b = param_find("DBX_phi_K_b");
@@ -162,7 +162,7 @@ int simulink_main(int argc, char *argv[])
   GCS_comms_pointers.r_tau = param_find("DBX_r_tau");
   GCS_comms_pointers.r_K_b = param_find("DBX_r_K_b");
   
-  GCS_comms_pointers.Flaps_ang_deg = param_find("DBX_Flaps_ang_deg");
+  GCS_comms_pointers.Flaps_deg = param_find("DBX_Flaps_deg");
 
 
   // Limiting the update rate
@@ -240,7 +240,7 @@ int simulink_main(int argc, char *argv[])
 		/*----- Added inputs ---------*/
         dbx_control_U.gps_pdop = gps.eph; // pdop or hdop
         dbx_control_U.gps_vdop = gps.epv; // vdop
-		Calibrar baterias!!
+		/////Calibrar baterias!!
         dbx_control_U.bat_volts = bat_status.voltage_filtered_v; // Batery volts
         dbx_control_U.pitot_diff_pre = sensors.differential_pressure_filtered_pa; // Pitot presion dinamica
         dbx_control_U.TAS_mps = airspeed.true_airspeed_m_s; // TAS estimada
@@ -270,7 +270,7 @@ int simulink_main(int argc, char *argv[])
           // Read GCS parameters
 			param_get(GCS_comms_pointers.Throtle_sens, 		&(GCS_parameters.Throtle_sens));
 			param_get(GCS_comms_pointers.Yaw_sens, 		&(GCS_parameters.Yaw_sens));
-			param_get(GCS_comms_pointers.Roll_pich_sens, 		&(GCS_parameters.Roll_pich_sens));
+			param_get(GCS_comms_pointers.Atti_sens, 		&(GCS_parameters.Atti_sens));
 			param_get(GCS_comms_pointers.phi_tau, 		&(GCS_parameters.phi_tau));
 			param_get(GCS_comms_pointers.phi_K_b, 		&(GCS_parameters.phi_K_b));
 			param_get(GCS_comms_pointers.phi_f_i,       &(GCS_parameters.phi_f_i));
@@ -286,12 +286,12 @@ int simulink_main(int argc, char *argv[])
 			param_get(GCS_comms_pointers.q_K_b,          &(GCS_parameters.q_K_b));
             param_get(GCS_comms_pointers.r_tau,          &(GCS_parameters.r_tau));
             param_get(GCS_comms_pointers.r_K_b,          &(GCS_parameters.r_K_b));
-            param_get(GCS_comms_pointers.Flaps_ang_deg,          &(GCS_parameters.Flaps_ang_deg));
+            param_get(GCS_comms_pointers.Flaps_deg,          &(GCS_parameters.Flaps_deg));
 
 			// Declarar las ganancias de Simulink: se podria necesitar Casting!
 			dbx_control_P.Throtle_sens = GCS_parameters.Throtle_sens;
 			dbx_control_P.Yaw_sens  = GCS_parameters.Yaw_sens;
-            dbx_control_P.Roll_pich_sens  = GCS_parameters.Roll_pich_sens;
+            dbx_control_P.Roll_pich_sens  = GCS_parameters.Atti_sens;
             dbx_control_P.phi_tau  = GCS_parameters.phi_tau;
             dbx_control_P.phi_K_b  = GCS_parameters.phi_K_b;
             dbx_control_P.phi_f_i  = GCS_parameters.phi_f_i;

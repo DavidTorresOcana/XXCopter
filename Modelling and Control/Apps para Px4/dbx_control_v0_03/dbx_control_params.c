@@ -65,7 +65,7 @@ PARAM_DEFINE_FLOAT(DBX_Yaw_sens, 20.0f);
  * @max 
  * @
  */
-PARAM_DEFINE_FLOAT(DBX_Roll_pich_sens, 10.0f);
+PARAM_DEFINE_FLOAT(DBX_Atti_sens, 10.0f);
 
 /**
  * Tiempo de respuesta PHI
@@ -240,4 +240,4 @@ PARAM_DEFINE_FLOAT(DBX_r_K_b, 5.0f);
  * @max 
  * @
  */
-PARAM_DEFINE_FLOAT(DBX_Flaps_ang_deg, 0.0f);
+PARAM_DEFINE_FLOAT(DBX_Flaps_deg, 0.0f);
