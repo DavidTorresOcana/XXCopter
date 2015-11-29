@@ -1,17 +1,16 @@
 sh /etc/init.d/rc.mc_defaults
 
 #
-# Mavlink (PX4FMU: ttyS0 - Pixhawk & PX4IO: ttyS1)
+# Mavlink Pixhawk: ttyS1
 #
+mavlink start -d /dev/ttyS1 -b 115200
+usleep 2000
 
 #
 # RPI Serial interface
 #
-
-mavlink start -d /dev/ttyS6 -b 115200
-usleep 1000
 mavlink start -d /dev/ttyS2 -b 115200
-usleep 1000
+usleep 2000
 
 #
 # Stop my dear commander :)
@@ -47,6 +46,8 @@ usleep 1000
 
 #
 # PWMs config para VTOL: mirar las hojas de configuracion de PWMs!
+#
+
 pwm rate -r 50 -a
 # Motores
 pwm failsafe -c 123 -p 1100 
@@ -93,19 +94,19 @@ echo "pwm VTOL"
 
 dbx_control start
 usleep 2000
-echo "simulink"
+echo "dbx_control"
 
 #
-# resacalado de baterias con Atto-pilot
+# Resacalado de baterias con Atto-pilot
 #
 param set BAT_V_SCALING 0.012672
 
 #
-# FW PID cascade controler for DBX
+# Flight Control System (Simulink) parameters and constants for DBX
 #
 
-sh /fs/microsd/etc/dbx_control_fw_params.txt
-#sh /fs/microsd/etc/dbx_control_vtol_params.txt
+#sh /fs/microsd/etc/dbx_control_fw_params.txt
+sh /fs/microsd/etc/dbx_control_vtol_params.txt
 
 #
 # Start Loging!
