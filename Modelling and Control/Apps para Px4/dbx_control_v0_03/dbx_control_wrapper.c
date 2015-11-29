@@ -307,7 +307,7 @@ int simulink_main(int argc, char *argv[])
             dbx_control_P.q_K_b  = GCS_parameters.q_K_b;
             dbx_control_P.r_tau  = GCS_parameters.r_tau;
             dbx_control_P.r_K_b  = GCS_parameters.r_K_b;
-            dbx_control_P.Flaps_ang_deg  = GCS_parameters.Flaps_ang_deg;
+            dbx_control_P.Flaps_ang_deg  = GCS_parameters.Flaps_deg;
 
           // output FMU LED signals
           if (dbx_control_Y.led_blue == 1) {
