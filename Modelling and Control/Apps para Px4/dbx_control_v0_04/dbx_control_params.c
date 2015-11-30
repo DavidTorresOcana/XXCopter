@@ -141,7 +141,7 @@ PARAM_DEFINE_FLOAT(DBX_theta_f_i, 0.2f);
  * @max 
  * @
  */
-PARAM_DEFINE_FLOAT(DBX_psi_tau, 1.5f);
+PARAM_DEFINE_FLOAT(DBX_psi_tau, 4.0f);
 /**
  * Ganancia control PSI
  *

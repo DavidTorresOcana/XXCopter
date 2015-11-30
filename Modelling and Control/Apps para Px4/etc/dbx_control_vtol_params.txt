@@ -14,7 +14,7 @@ param set DBX_theta_tau 0.7
 param set DBX_theta_K_b 3.0
 param set DBX_theta_f_i 0.2
 
-param set DBX_psi_tau 1.5
+param set DBX_psi_tau 4
 param set DBX_psi_K_b 2.5
 param set DBX_psi_f_i 0.1
 
