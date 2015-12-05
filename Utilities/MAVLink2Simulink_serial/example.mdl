@@ -54,8 +54,8 @@ Model {
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
 	Extents			[1246.0, 866.0]
-	ZoomFactor		[1.5]
-	Offset			[105.511053339033, 60.074520802964933]
+	ZoomFactor		[1.81148912437256]
+	Offset			[179.97967980295567, 75.077355136944121]
       }
     }
   }
@@ -65,7 +65,7 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "David"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Sun Nov 29 20:51:47 2015"
+  LastModifiedDate	  "Tue Dec 01 00:57:53 2015"
   RTWModifiedTimeStamp	  370731106
   ModelVersionFormat	  "1.%<AutoIncrement:82>"
   ConfigurationManager	  "none"
@@ -817,7 +817,7 @@ Model {
     TiledPaperMargins	    [1.270000, 1.270000, 1.270000, 1.270000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "150"
+    ZoomFactor		    "181"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "41"
     Block {

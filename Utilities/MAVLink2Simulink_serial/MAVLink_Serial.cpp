@@ -29,7 +29,7 @@ SOFTWARE.
 //Simulink definitions
 #define S_FUNCTION_NAME  MAVLink_Serial
 #define S_FUNCTION_LEVEL 2
-// #define MDL_CHECK_PARAMETERS
+#define MDL_CHECK_PARAMETERS
 // #define MAVLINK_CRC_EXTRA 1
 
 //For Windows serial ports
@@ -67,6 +67,21 @@ SOFTWARE.
 # error This_file_can_be_used_only_during_simulation_inside_Simulink
 #endif
 
+#if defined(MDL_CHECK_PARAMETERS) && defined(MATLAB_MEX_FILE)
+    static void mdlCheckParameters(SimStruct *S)
+    {
+        if (mxGetNumberOfElements(MSG_IN(S)) != 1) {
+            ssSetErrorStatus(S,"Parameter to S-function must be a scalar");
+            return;
+        } else if (mxGetPr(MSG_IN(S))[0] < 0) {
+            ssSetErrorStatus(S, "Parameter to S-function must be nonnegative");
+            return;
+        }
+    }
+#endif /* MDL_CHECK_PARAMETERS */
+    
+    
+    
 //boolean governing thread loops
 bool looping = true;
 
@@ -95,16 +110,16 @@ static void mdlInitializeSizes(SimStruct *S) {
 
     
     ssSetNumSFcnParams(S, NPARAMS);  /* Number of expected parameters */
-#if defined(MATLAB_MEX_FILE)
-    if (ssGetNumSFcnParams(S) == ssGetSFcnParamsCount(S)) {
-//         mdlCheckParameters(S);
-        if (ssGetErrorStatus(S) != NULL) {
-            return;
+    #if defined(MATLAB_MEX_FILE)
+        if (ssGetNumSFcnParams(S) == ssGetSFcnParamsCount(S)) {
+            mdlCheckParameters(S);
+            if (ssGetErrorStatus(S) != NULL) {
+                return;
+            }
+        } else {
+            return; /* Parameter mismatch will be reported by Simulink */
         }
-    } else {
-        return; /* Parameter mismatch will be reported by Simulink */
-    }
-#endif
+    #endif
 
     ssSetSFcnParamTunable(S,COM_PORT_IDX,false);
     ssSetSFcnParamTunable(S,COM_BUAD_IDX,false);
@@ -217,7 +232,8 @@ static void mdlInitializeSizes(SimStruct *S) {
      } 
     
     
-    
+        printf("\n number of inputs %i",nInputPorts);
+
     /* setup Dwork Vectors */
     
     ssSetNumDWork(S, nInputPorts+1);
@@ -231,9 +247,7 @@ static void mdlInitializeSizes(SimStruct *S) {
     
     ssSetNumRWork(S, nInputPorts); // length of each input buffer
     
-    
-    
-    
+   
 //     ssSetNumIWork(S, nOutputPorts);
     ssSetNumPWork(S, nOutputPorts);
     
@@ -243,6 +257,7 @@ static void mdlInitializeSizes(SimStruct *S) {
     ssSetNumSampleTimes(   S, 1);   /* number of sample times   */
     ssSetSimStateCompliance(S, USE_DEFAULT_SIM_STATE);
 
+    
 } /* end mdlInitializeSizes */
 
 
@@ -459,7 +474,7 @@ static void mdlUpdate(SimStruct *S, int_T tid)
 //             }
             case MAVLINK_MSG_ID_ATTITUDE:{
                 pInput = ssGetInputPortRealSignalPtrs(S,index);
-                uint64_T usec = (uint64_T) ((*pInput[0]) * 1000000);
+                uint32_T usec = (uint32_T) ((*pInput[0]) * 1000000);
                 float roll = (float) (*pInput[1]);
                 float pitch = (float) (*pInput[2]);
                 float yaw = (float) (*pInput[3]);
@@ -479,7 +494,7 @@ static void mdlUpdate(SimStruct *S, int_T tid)
                 float alt = (float) (*pInput[3]);
                 float vel = (float) (*pInput[4]);
                 float hdg = (float) (*pInput[5]);
-                msg_len = mavlink_msg_gps_raw_int_pack(255, 0, &msg, usec, 0, lat, lon, alt, 0.0, 0.0, vel, hdg,5);
+                msg_len = mavlink_msg_gps_raw_int_pack(255,  0, &msg, usec, 0,(int32_t) lat, (int32_t) lon, (int32_t) alt, (int16_t) 0.0, (int16_t) 0.0, (int16_t) vel, (int16_t) hdg, (int8_t) 5);
                 ptrBuf = (uint8_T*) ssGetDWork(S,index);
                                                
                 chksum = crc_calculate(ptrBuf+3,msg_len-4);       /* checksum just for the msg in the sending buffer */ 
