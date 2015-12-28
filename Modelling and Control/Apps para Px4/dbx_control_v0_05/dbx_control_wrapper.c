@@ -240,7 +240,6 @@ int simulink_main(int argc, char *argv[])
 		/*----- Added inputs ---------*/
         dbx_control_U.gps_pdop = gps.eph; // pdop or hdop
         dbx_control_U.gps_vdop = gps.epv; // vdop
-		/////Calibrar baterias!!
         dbx_control_U.bat_volts = bat_status.voltage_filtered_v; // Batery volts
         dbx_control_U.pitot_diff_pre = sensors.differential_pressure_filtered_pa; // Pitot presion dinamica
         dbx_control_U.TAS_mps = airspeed.true_airspeed_m_s; // TAS estimada
@@ -261,7 +260,7 @@ int simulink_main(int argc, char *argv[])
             ioctl(pwm, PWM_SERVO_SET(3), 1500);
             ioctl(pwm, PWM_SERVO_SET(4), 1500);
             ioctl(pwm, PWM_SERVO_SET(5), 1500);
-            ioctl(pwm, PWM_SERVO_SET(6), 1500);
+            ioctl(pwm, PWM_SERVO_SET(6), 1600);
             ioctl(pwm, PWM_SERVO_SET(7), 1500);
             pwm_enabled = 0;
             printf("\tDISARMED\tDISARMED\tDISARMED\tDISARMED\tDISARMED\tDISARMED\tDISARMED\tDISARMED\n");
@@ -339,7 +338,7 @@ int simulink_main(int argc, char *argv[])
               // (double)dbx_control_Y.debug8);
           
           // Sensors debuging and testing
-          printf("%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t\n",
+          printf("%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t\n",
               (double)(dbx_control_U.runtime/1000000),
               (double)local_pos.x,
               (double)local_pos.y,
@@ -352,7 +351,8 @@ int simulink_main(int argc, char *argv[])
               (double)sensors.baro_alt_meter,
               (double)sensors.accelerometer_m_s2[2],
               (double)sensors.gyro_rad_s[0],
-              (double)bat_status.voltage_filtered_v   );
+              (double)bat_status.voltage_filtered_v 
+              (double)attitude.yaw );
           i = 1;
         }
         // output pwm signals
@@ -372,7 +372,7 @@ int simulink_main(int argc, char *argv[])
           ioctl(pwm, PWM_SERVO_SET(3), 1500);
           ioctl(pwm, PWM_SERVO_SET(4), 1500);
           ioctl(pwm, PWM_SERVO_SET(5), 1500);
-          ioctl(pwm, PWM_SERVO_SET(6), 1500);
+          ioctl(pwm, PWM_SERVO_SET(6), 1600);
           ioctl(pwm, PWM_SERVO_SET(7), 1500);
         }
         // execute simulink code
@@ -387,7 +387,7 @@ int simulink_main(int argc, char *argv[])
   ioctl(pwm, PWM_SERVO_SET(3), 1500);
   ioctl(pwm, PWM_SERVO_SET(4), 1500);
   ioctl(pwm, PWM_SERVO_SET(5), 1500);
-  ioctl(pwm, PWM_SERVO_SET(6), 1500);
+  ioctl(pwm, PWM_SERVO_SET(6), 1600);
   ioctl(pwm, PWM_SERVO_SET(7), 1500);
   ioctl(pwm, PWM_SERVO_DISARM, 0);
   // disable LEDs

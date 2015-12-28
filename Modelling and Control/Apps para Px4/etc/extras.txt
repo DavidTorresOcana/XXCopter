@@ -59,7 +59,7 @@ pwm failsafe -c 45678 -p 1500
 pwm min -c 45678 -p 900 
 pwm max -c 45678 -p 2100 
 pwm disarmed -c 45678 -p 1500
-pwm disarmed -c 7 -p 1350 # Indicacion de desarmado
+pwm disarmed -c 7 -p 1600 # Indicacion de desarmado
 echo "pwm VTOL"
 
 
