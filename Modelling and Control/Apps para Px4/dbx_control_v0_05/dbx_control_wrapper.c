@@ -297,9 +297,9 @@ int simulink_main(int argc, char *argv[])
             dbx_control_P.theta_tau  = GCS_parameters.theta_tau;
             dbx_control_P.theta_K_b  = GCS_parameters.theta_K_b;
             dbx_control_P.theta_f_i  = GCS_parameters.theta_f_i;
-            dbx_control_P.psi_tau  = GCS_parameters.psi_tau;
-            dbx_control_P.psi_K_b  = GCS_parameters.psi_K_b;
-            dbx_control_P.psi_f_i  = GCS_parameters.psi_f_i;
+//             dbx_control_P.psi_tau  = GCS_parameters.psi_tau;
+//             dbx_control_P.psi_K_b  = GCS_parameters.psi_K_b;
+//             dbx_control_P.psi_f_i  = GCS_parameters.psi_f_i;
             dbx_control_P.p_tau  = GCS_parameters.p_tau;
             dbx_control_P.p_K_b  = GCS_parameters.p_K_b;
             dbx_control_P.q_tau  = GCS_parameters.q_tau;
