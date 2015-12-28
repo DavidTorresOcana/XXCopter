@@ -326,33 +326,33 @@ int simulink_main(int argc, char *argv[])
           rgb_value.blue = dbx_control_Y.rgb_blue;
           ioctl(rgbled, RGBLED_SET_RGB, (unsigned long)&rgb_value);
           //print debug data
-          // printf("%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t\n",
-              // (double)(dbx_control_U.runtime/1000000),
-              // (double)dbx_control_Y.debug1,
-              // (double)dbx_control_Y.debug2,
-              // (double)dbx_control_Y.debug3,
-              // (double)dbx_control_Y.debug4,
-              // (double)dbx_control_Y.debug5,
-              // (double)dbx_control_Y.debug6,
-              // (double)dbx_control_Y.debug7,
-              // (double)dbx_control_Y.debug8);
+          printf("%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t\n",
+              (double)(dbx_control_U.runtime/1000000),
+              (double)dbx_control_Y.debug1,
+              (double)dbx_control_Y.debug2,
+              (double)dbx_control_Y.debug3,
+              (double)dbx_control_Y.debug4,
+              (double)dbx_control_Y.debug5,
+              (double)dbx_control_Y.debug6,
+              (double)dbx_control_Y.debug7,
+              (double)dbx_control_Y.debug8);
           
           // Sensors debuging and testing
-          printf("%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t\n",
-              (double)(dbx_control_U.runtime/1000000),
-              (double)local_pos.x,
-              (double)local_pos.y,
-              (double)local_pos.z,
-              (double)gps.epv,
-              (double)local_pos.vx,
-              (double)local_pos.vy,
-              (double)local_pos.vz,
-              (double)airspeed.true_airspeed_m_s,
-              (double)sensors.baro_alt_meter,
-              (double)sensors.accelerometer_m_s2[2],
-              (double)sensors.gyro_rad_s[0],
-              (double)bat_status.voltage_filtered_v, 
-              (double)attitude.yaw );
+//           printf("%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t%8.4f\t\n",
+//               (double)(dbx_control_U.runtime/1000000),
+//               (double)local_pos.x,
+//               (double)local_pos.y,
+//               (double)local_pos.z,
+//               (double)gps.epv,
+//               (double)local_pos.vx,
+//               (double)local_pos.vy,
+//               (double)local_pos.vz,
+//               (double)airspeed.true_airspeed_m_s,
+//               (double)sensors.baro_alt_meter,
+//               (double)sensors.accelerometer_m_s2[2],
+//               (double)sensors.gyro_rad_s[0],
+//               (double)bat_status.voltage_filtered_v, 
+//               (double)attitude.yaw );
           i = 1;
         }
         // output pwm signals
