@@ -351,7 +351,7 @@ int simulink_main(int argc, char *argv[])
               (double)sensors.baro_alt_meter,
               (double)sensors.accelerometer_m_s2[2],
               (double)sensors.gyro_rad_s[0],
-              (double)bat_status.voltage_filtered_v 
+              (double)bat_status.voltage_filtered_v, 
               (double)attitude.yaw );
           i = 1;
         }
