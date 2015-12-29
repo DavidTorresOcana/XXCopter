@@ -254,13 +254,13 @@ int simulink_main(int argc, char *argv[])
             printf("\t  ARMED\t\t  ARMED\t\t  ARMED\t\t  ARMED\t\t  ARMED\t\t  ARMED\t\t  ARMED\t\t  ARMED\n");
           } else if (dbx_control_Y.pwm_arm == 0 && pwm_enabled == 1) {
             // disarm system
-            ioctl(pwm, PWM_SERVO_SET(0), 1100);
-            ioctl(pwm, PWM_SERVO_SET(1), 1100);
-            ioctl(pwm, PWM_SERVO_SET(2), 1100);
+            ioctl(pwm, PWM_SERVO_SET(0), 900);
+            ioctl(pwm, PWM_SERVO_SET(1), 900);
+            ioctl(pwm, PWM_SERVO_SET(2), 900);
             ioctl(pwm, PWM_SERVO_SET(3), 1500);
             ioctl(pwm, PWM_SERVO_SET(4), 1500);
             ioctl(pwm, PWM_SERVO_SET(5), 1500);
-            ioctl(pwm, PWM_SERVO_SET(6), 1600);
+            ioctl(pwm, PWM_SERVO_SET(6), 1600); 
             ioctl(pwm, PWM_SERVO_SET(7), 1500);
             pwm_enabled = 0;
             printf("\tDISARMED\tDISARMED\tDISARMED\tDISARMED\tDISARMED\tDISARMED\tDISARMED\tDISARMED\n");
@@ -297,8 +297,8 @@ int simulink_main(int argc, char *argv[])
             dbx_control_P.theta_tau  = GCS_parameters.theta_tau;
             dbx_control_P.theta_K_b  = GCS_parameters.theta_K_b;
             dbx_control_P.theta_f_i  = GCS_parameters.theta_f_i;
-//             dbx_control_P.psi_tau  = GCS_parameters.psi_tau;
-//             dbx_control_P.psi_K_b  = GCS_parameters.psi_K_b;
+//             dbx_control_P.psi_tau  = GCS_parameters.psi_tau; // Estas salidas estaban cuando habia control en heading
+//             dbx_control_P.psi_K_b  = GCS_parameters.psi_K_b;  // Descomentarlas si se activa heading control en simulink
 //             dbx_control_P.psi_f_i  = GCS_parameters.psi_f_i;
             dbx_control_P.p_tau  = GCS_parameters.p_tau;
             dbx_control_P.p_K_b  = GCS_parameters.p_K_b;
@@ -366,13 +366,13 @@ int simulink_main(int argc, char *argv[])
           ioctl(pwm, PWM_SERVO_SET(6), dbx_control_Y.pwm7);
           ioctl(pwm, PWM_SERVO_SET(7), dbx_control_Y.pwm8);
         } else {
-          ioctl(pwm, PWM_SERVO_SET(0), 1100);
-          ioctl(pwm, PWM_SERVO_SET(1), 1100);
-          ioctl(pwm, PWM_SERVO_SET(2), 1100);
+          ioctl(pwm, PWM_SERVO_SET(0), 900);
+          ioctl(pwm, PWM_SERVO_SET(1), 900);
+          ioctl(pwm, PWM_SERVO_SET(2), 900);
           ioctl(pwm, PWM_SERVO_SET(3), 1500);
           ioctl(pwm, PWM_SERVO_SET(4), 1500);
           ioctl(pwm, PWM_SERVO_SET(5), 1500);
-          ioctl(pwm, PWM_SERVO_SET(6), 1600);
+          ioctl(pwm, PWM_SERVO_SET(6), 1600); // Disarmed indication
           ioctl(pwm, PWM_SERVO_SET(7), 1500);
         }
         // execute simulink code
@@ -381,13 +381,13 @@ int simulink_main(int argc, char *argv[])
     }
   }
   // disable pwm outputs
-  ioctl(pwm, PWM_SERVO_SET(0), 1100);
-  ioctl(pwm, PWM_SERVO_SET(1), 1100);
-  ioctl(pwm, PWM_SERVO_SET(2), 1100);
+  ioctl(pwm, PWM_SERVO_SET(0), 900);
+  ioctl(pwm, PWM_SERVO_SET(1), 900);
+  ioctl(pwm, PWM_SERVO_SET(2), 900);
   ioctl(pwm, PWM_SERVO_SET(3), 1500);
   ioctl(pwm, PWM_SERVO_SET(4), 1500);
   ioctl(pwm, PWM_SERVO_SET(5), 1500);
-  ioctl(pwm, PWM_SERVO_SET(6), 1600);
+  ioctl(pwm, PWM_SERVO_SET(6), 1600); // Disarmed indication
   ioctl(pwm, PWM_SERVO_SET(7), 1500);
   ioctl(pwm, PWM_SERVO_DISARM, 0);
   // disable LEDs

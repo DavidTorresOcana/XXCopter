@@ -50,16 +50,15 @@ usleep 1000
 
 pwm rate -r 50 -a
 # Motores
-pwm failsafe -c 123 -p 1100 
-pwm min -c 123 -p 1100 
-pwm max -c 123 -p 1900
-pwm disarmed -c 123 -p 1100
+pwm failsafe -c 123 -p 900 
+pwm min -c 123 -p 900 
+pwm max -c 123 -p 2100
+pwm disarmed -c 123 -p 900
 # Servos
 pwm failsafe -c 45678 -p 1500 
 pwm min -c 45678 -p 900 
 pwm max -c 45678 -p 2100 
 pwm disarmed -c 45678 -p 1500
-pwm disarmed -c 7 -p 1600 # Indicacion de desarmado
 echo "pwm VTOL"
 
 
@@ -68,10 +67,10 @@ echo "pwm VTOL"
 #
 ##pwm rate -r 50 -a
 # Motores
-##pwm failsafe -c 12 -p 1100 
-##pwm min -c 12 -p 1100 
-##pwm max -c 12 -p 1900
-##pwm disarmed -c 12 -p 1100
+##pwm failsafe -c 12 -p 900 
+##pwm min -c 12 -p 900 
+##pwm max -c 12 -p 2100
+##pwm disarmed -c 12 -p 900
 
 # Servos
 ##pwm failsafe -c 3 -p 1970 
@@ -112,7 +111,7 @@ sh /fs/microsd/etc/dbx_control_vtol_params.txt
 # Start Loging!
 #
 
-sdlog2 on -r 10 -t
+#sdlog2 on -r 10 -t
 
 
 #exit

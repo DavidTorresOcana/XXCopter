@@ -47,7 +47,7 @@ pwm rate -r 50 -a
 # Motores
 pwm failsafe -c 12 -p 900 
 pwm min -c 12 -p 900 
-pwm max -c 12 -p 1900
+pwm max -c 12 -p 2100
 pwm disarmed -c 12 -p 900
 
 # Servos
