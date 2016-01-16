@@ -9,8 +9,8 @@ usleep 2000
 #
 # RPI Serial interface
 #
-mavlink start -d /dev/ttyS2 -b 115200
-usleep 2000
+#mavlink start -d /dev/ttyS2 -b 115200
+#usleep 2000
 
 #
 # Stop my dear commander :)
@@ -112,7 +112,7 @@ sh /fs/microsd/etc/dbx_control_vtol_params.txt
 # Start Loging!
 #
 
-#sdlog2 on -r 10 -t
+sdlog2 on -r 10 -t
 
 
 #exit
