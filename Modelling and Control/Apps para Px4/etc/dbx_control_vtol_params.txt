@@ -29,5 +29,25 @@ param set DBX_r_K_b 5.0
 
 param set DBX_Flaps_deg 0.0
 
+
+# Params of Classical controller
+param set DBXcl_theta_Kp 3.0
+param set DBXcl_phi_Kp 3.0
+
+param set DBXcl_theta_Ki 0.1
+param set DBXcl_phi_Ki 0.1
+
+param set DBXcl_theta_Kd 0.0
+param set DBXcl_phi_Kd 0.0
+
+param set DBXcl_theta_dot_Kp 0.2
+param set DBXcl_phi_dot_Kp 0.2
+
+param set DBXcl_theta_dot_Ki 0.0
+param set DBXcl_phi_dot_Ki 0.0
+
+param set DBXcl_theta_dot_Kd 0.0
+param set DBXcl_phi_dot_Kd 0.0
+
 echo "Control_params"
 #exit
